@@ -1,0 +1,32 @@
+int* findErrorNums(int* nums, int numsSize, int* returnSize) {
+    int sum=0;
+    int relsum=0;
+    int *line=malloc(numsSize*sizeof(int));
+    int mat=0;
+    *returnSize=2;
+    for(int i=0;i<numsSize;i++){
+        line[i]=i+1;
+        sum+=(i+1);
+        relsum+=nums[i];
+    }
+
+    int *result=malloc(2*sizeof(int));
+    for(int i=0;i<numsSize;i++){
+        for(int j=0;j<numsSize;j++){
+            if(nums[i]==line[j]){
+                line[j]=0;
+                break;
+            }
+            else if(j==numsSize-1){
+                result[0]=nums[i];
+                break;
+            }
+            else{
+                continue;
+            }
+        }
+    }
+    int rest=sum-relsum;
+    result[1]=result[0]+rest;
+    return result;
+}
