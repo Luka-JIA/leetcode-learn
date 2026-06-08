@@ -29,3 +29,23 @@ int* pivotArray(int* nums, int numsSize, int pivot, int* returnSize) {
     free(afte);
     return result;
 }
+
+
+
+
+
+#new method
+
+int* pivotArray(int* nums, int numsSize, int pivot, int* returnSize) {
+    *returnSize=numsSize;
+    int* temp=malloc(sizeof(int)*numsSize);//暂存大于pivot的
+    int tempTop=0,numsTop=0,cnt_pivot=0;
+    for(int i=0;i<numsSize;i++){
+        if(nums[i]<pivot)nums[numsTop++]=nums[i];
+        else if(nums[i]==pivot)cnt_pivot++;
+        else temp[tempTop++]=nums[i];
+    }
+    for(int i=0;i<cnt_pivot;i++)nums[numsTop++]=pivot;
+    for(int i=0;i<tempTop;i++)nums[numsTop++]=temp[i];
+    return nums;
+}
